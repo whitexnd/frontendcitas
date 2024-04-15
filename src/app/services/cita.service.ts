@@ -17,6 +17,18 @@ export class CitaService {
     return this.httpClient.get(this.API_SERVER);
   }
 
+  public getCitaById(citaId: any): Observable<any> {
+    return this.httpClient.get(this.API_SERVER + '/' + citaId);
+  }
+
+  public updateCita(cita: any): Observable<any> {
+    return this.httpClient.put(this.API_SERVER + '/' + cita.id, cita);
+  }
+
+  public deleteCita(citaId: any): Observable<any> {
+    return this.httpClient.delete(this.API_SERVER + '/' + citaId);
+  }
+
   public saveCita(cita: any): Observable<any> {
     return this.httpClient.post(this.API_SERVER, cita);
   }

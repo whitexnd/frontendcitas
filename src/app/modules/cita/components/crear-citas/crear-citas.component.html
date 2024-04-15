@@ -1,0 +1,27 @@
+<div class="formularioRegistro">
+    <h2>{{titulo}}</h2>
+    <form [formGroup]="citaForm" (ngSubmit)="guardar()">
+      <div class="form-group">
+        <label>Fecha y hora</label>
+        <input type="datetime-local" class="form-control" id="fechaHora" formControlName="fechaHora">
+        <label>Motivo de la Cita</label>
+        <input type="text" class="form-control" id="motivoCita" formControlName="motivoCita">
+        <label>Paciente</label>
+        <select name="pacienteNSS" id="pacienteNSS" formControlName="pacienteNSS" class="form-control">
+          <option [value]="item.nss" *ngFor="let item of paciente">{{"NSS: "+item.nss+" - "+item.nombre+" "+item.apellidos}}</option>
+        </select>
+        <label>Medico</label>
+        <select name="medicoNumColegiado" id="medicoNumColegiado" formControlName="medicoNumColegiado" class="form-control">
+          <option [value]="item.numColegiado" *ngFor="let item of medico">{{"Nº Colegiado: "+item.numColegiado+" - "+item.nombre+" "+item.apellidos}}</option>
+        </select>
+        <div formGroupName="diagnostico" id="diagnosticodiv">
+          <h4>Diagnostico</h4>
+          <label>Valoración del Especialista</label>
+          <input type="text" formControlName="valoracionEspecialista" class="form-control" id="valoracionEspecialista">
+          <label>Enfermedad</label>
+          <input type="text" formControlName="enfermedad" class="form-control" id="enfermedad">
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!citaForm.valid">Guardar</button>
+      </div>
+    </form>
+  </div>

@@ -1,0 +1,24 @@
+.formularioRegistro{
+    margin: 0 auto;
+    width: 40%;
+    margin-top: 6%;
+}
+
+#diagnosticodiv{
+    padding: .375rem .75rem;
+    margin-bottom: .5rem;
+}
+
+.tablacitas{
+    margin-top: 6%;
+    padding-bottom: 12%;
+}
+
+.tablacitas h2{
+    text-align: center;
+}
+
+.tablacitas table{
+    margin: 0 auto;
+    width: 60%;
+}
