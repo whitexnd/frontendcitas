@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CitaModule } from './modules/cita/cita.module';
+import { MedicoModule } from './modules/medico/medico.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CitaModule } from './modules/cita/cita.module';
     ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    CitaModule
+    CitaModule,
+    MedicoModule
   ],
   providers: [
     provideClientHydration()

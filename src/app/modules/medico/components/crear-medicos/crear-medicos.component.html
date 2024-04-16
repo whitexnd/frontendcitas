@@ -1,0 +1,19 @@
+<div class="formularioRegistro">
+    <h2>{{titulo}}</h2>
+    <hr>
+    <form [formGroup]="medicoForm" (ngSubmit)="guardar()">
+      <div class="form-group">
+        <label>Numero Colegiado</label>
+        <input type="text" class="form-control" id="numColegiado" formControlName="numColegiado" [disabled]="editando">
+        <label>Nombre</label>
+        <input type="text" class="form-control" id="nombre" formControlName="nombre">
+        <label>Apellidos</label>
+        <input type="text" class="form-control" id="apellidos" formControlName="apellidos">
+        <label>Usuario</label>
+        <input type="text" class="form-control" id="usuario" formControlName="usuario">
+        <label>Clave</label>
+        <input type="text" class="form-control" id="clave" formControlName="clave">
+        <button type="submit" class="btn btn-primary botonform" [disabled]="!medicoForm.valid">Guardar <i class="bi bi-save2"></i></button>
+      </div>
+    </form>
+  </div>

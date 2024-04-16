@@ -1,3 +1,5 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+
 .formularioRegistro{
     margin: 0 auto;
     width: 40%;
@@ -6,7 +8,6 @@
 
 #diagnosticodiv{
     padding: .375rem .75rem;
-    margin-bottom: .5rem;
 }
 
 .tablacitas{
@@ -21,4 +22,8 @@
 .tablacitas table{
     margin: 0 auto;
     width: 60%;
+}
+
+.botonform{
+    margin-top: 2%;
 }

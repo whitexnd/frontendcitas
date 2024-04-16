@@ -21,8 +21,8 @@
                 <td>{{item.medicoNumColegiado}}</td>
                 <td>{{item.diagnostico?.valoracionEspecialista}}</td>
                 <td>{{item.diagnostico?.enfermedad}}</td>
-                <td><button type="button" [routerLink]="['/citas', item.id]" class="btn btn-primary">Editar</button></td>
-                <td><button type="button" class="btn btn-danger" (click)="eliminar(item)">Eliminar</button></td>
+                <td><button type="button" [routerLink]="['/citas', item.id]" class="btn btn-primary"><i class="bi bi-pencil-square"></i></button></td>
+                <td><button type="button" class="btn btn-danger" (click)="eliminar(item)"><i class="bi bi-trash-fill"></i></button></td>
             </tr>
         </tbody>
     </table>

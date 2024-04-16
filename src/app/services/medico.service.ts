@@ -15,4 +15,16 @@ export class MedicoService {
   public getAllmedico(): Observable<any> {
     return this.httpClient.get(this.API_SERVER);
   }
+
+  public deleteMedico(medicoNumColegiado: any): Observable<any> {
+    return this.httpClient.delete(this.API_SERVER + '/' + medicoNumColegiado);
+  }
+
+  public getMedicoBynumColegiado(medicoNumColegiado: any): Observable<any> {
+    return this.httpClient.get(this.API_SERVER + '/' + medicoNumColegiado);
+  }
+
+  public saveMedico(medico: any): Observable<any> {
+    return this.httpClient.post(this.API_SERVER, medico);
+  }
 }
