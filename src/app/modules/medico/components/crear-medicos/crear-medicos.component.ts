@@ -23,9 +23,7 @@ export class CrearMedicosComponent  implements OnInit {
   constructor(
     private route: ActivatedRoute,
     public fb: FormBuilder,
-    public citaService: CitaService,
-    public medicoService: MedicoService,
-    public pacienteService: PacienteService
+    public medicoService: MedicoService
   ) {
 
   }
@@ -36,7 +34,7 @@ export class CrearMedicosComponent  implements OnInit {
 
     });
     this.medicoForm = this.fb.group({
-      numColegiado: [{value: '', disabled: this.editando}, Validators.required],
+      numColegiado: [this.numColegiado, Validators.required],
       nombre: [null, Validators.required],
       apellidos: ['', Validators.required],
       usuario: ['', Validators.required],
@@ -48,19 +46,20 @@ export class CrearMedicosComponent  implements OnInit {
       this.medicoService.getMedicoBynumColegiado(this.numColegiado).subscribe(resp => {
         this.medicoForm.patchValue(resp);
       }, error => console.error(error))
+      this.medicoForm.get('numColegiado')?.disable();
     }
-
-    this.medicoService.getAllmedico().subscribe(resp => {
-      this.medico = resp;
-    }, error => console.error(error))
   }
 
 
   guardar(): void {
-    this.medicoService.saveMedico(this.medicoForm.value).subscribe(resp => {
-      this.medicoForm.reset();
-      this.medico.push(resp);
-    }, error => console.error(error))
+    if(this.editando === false){
+      this.medicoService.saveMedico(this.medicoForm.value).subscribe(resp => {
+      }, error => console.error(error))
+    } else {
+      this.medicoService.updateMedico(this.medicoForm.getRawValue()).subscribe(resp => {
+      }, error => console.error(error))
+    }
+
     window.location.href = '/vermedicos';
   }
 

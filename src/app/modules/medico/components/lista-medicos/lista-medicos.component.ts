@@ -10,8 +10,6 @@ import { PacienteService } from '../../../../services/paciente.service';
   styleUrl: '../../../../app.component.css'
 })
 export class ListaMedicosComponent  implements OnInit {
-
-  citaForm!: FormGroup;
   medico: any;
 
   constructor(
@@ -26,10 +24,10 @@ export class ListaMedicosComponent  implements OnInit {
     }, error => console.error(error))
   }
 
-  eliminar(cita: any) {
-    this.medicoService.deleteMedico(cita.id).subscribe(resp => {
+  eliminar(medico: any) {
+    this.medicoService.deleteMedico(medico.numColegiado).subscribe(resp => {
       if (resp === true) {
-        this.medico = this.medico.filter((item: any) => item.numColegiado !== cita.numColegiado)
+        this.medico = this.medico.filter((item: any) => item.numColegiado !== medico.numColegiado)
       }
     })
   }

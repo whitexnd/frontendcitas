@@ -8,6 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { CitaModule } from './modules/cita/cita.module';
 import { MedicoModule } from './modules/medico/medico.module';
+import { PacienteModule } from './modules/paciente/paciente.module';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { MedicoModule } from './modules/medico/medico.module';
     BrowserAnimationsModule,
     HttpClientModule,
     CitaModule,
-    MedicoModule
+    MedicoModule,
+    PacienteModule
   ],
   providers: [
     provideClientHydration()

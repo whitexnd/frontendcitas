@@ -27,4 +27,8 @@ export class MedicoService {
   public saveMedico(medico: any): Observable<any> {
     return this.httpClient.post(this.API_SERVER, medico);
   }
+
+  public updateMedico(medico: any): Observable<any> {
+    return this.httpClient.put(this.API_SERVER + '/' + medico.numColegiado, medico);
+  }
 }

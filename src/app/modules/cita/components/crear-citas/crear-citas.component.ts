@@ -42,8 +42,8 @@ export class CrearCitasComponent implements OnInit {
       medicoNumColegiado: ['', Validators.required],
       diagnostico: this.fb.group({
         id: [null],
-        valoracionEspecialista: ['', Validators.required],
-        enfermedad: ['', Validators.required],
+        valoracionEspecialista: [''],
+        enfermedad: [''],
         citaId: [null]
       })
     })
@@ -72,17 +72,18 @@ export class CrearCitasComponent implements OnInit {
 
   guardar(): void {
     this.citaForm.value.fechaHora = formatDate(this.citaForm.value.fechaHora, 'dd/MM/yyyy HH:mm', 'en-US');
+    
     if (this.citaForm.value.id == null) {
       this.citaService.saveCita(this.citaForm.value).subscribe(resp => {
-        this.citaForm.reset();
       }, error => console.error(error))
+
     } else {
       this.citaForm.value.diagnostico.citaId = this.citaForm.value.id;
+
       this.citaService.updateCita(this.citaForm.value).subscribe(resp => {
-        this.citaForm.reset();
-        this.cita.push(resp);
       }, error => console.error(error))
     }
+
     window.location.href = '/vercitas';
   }
 
