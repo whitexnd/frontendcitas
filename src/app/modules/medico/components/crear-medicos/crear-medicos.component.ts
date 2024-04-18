@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CitaService } from '../../../../services/cita.service';
 import { MedicoService } from '../../../../services/medico.service';
 import { PacienteService } from '../../../../services/paciente.service';
+import { Medico } from '../../../../models/medico.model';
 
 @Component({
   selector: 'app-crear-medicos',
@@ -13,9 +14,6 @@ import { PacienteService } from '../../../../services/paciente.service';
 export class CrearMedicosComponent  implements OnInit {
 
   medicoForm!: FormGroup;
-  paciente: any;
-  medico: any;
-  cita: any;
   numColegiado: any = null;
   titulo: string = 'Crear Medico';
   editando: boolean = false;
@@ -63,7 +61,7 @@ export class CrearMedicosComponent  implements OnInit {
     window.location.href = '/vermedicos';
   }
 
-  editar(medico: any) {
+  editar(medico: Medico) {
     this.medicoForm.setValue(medico);
   }
 

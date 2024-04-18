@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { PacienteService } from '../../../../services/paciente.service';
+import { Paciente } from '../../../../models/paciente.model';
 
 @Component({
   selector: 'app-crear-pacientes',
@@ -11,7 +12,7 @@ import { PacienteService } from '../../../../services/paciente.service';
 export class CrearPacientesComponent implements OnInit {
 
   pacienteForm!: FormGroup;
-  paciente: any;
+  paciente: Paciente[] = [];
   nss: any = null;
   titulo: string = 'Crear Paciente';
   editando: boolean = false;
@@ -61,7 +62,7 @@ export class CrearPacientesComponent implements OnInit {
     window.location.href = '/verpacientes';
   }
 
-  editar(paciente: any) {
+  editar(paciente: Paciente) {
     this.pacienteForm.setValue(paciente);
   }
 

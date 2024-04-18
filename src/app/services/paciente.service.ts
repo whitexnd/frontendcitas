@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Paciente } from '../models/paciente.model';
 
 @Injectable({
   providedIn: 'root'
@@ -12,23 +13,24 @@ export class PacienteService {
     private httpClient: HttpClient
   ) { }
 
-  public getAllPaciente(): Observable<any> {
-    return this.httpClient.get(this.API_SERVER);
+  public getAllPaciente(): Observable<Paciente[]> {
+    return this.httpClient.get<Paciente[]>(this.API_SERVER);
   }
 
-  public savePaciente(paciente: any): Observable<any> {
-    return this.httpClient.post(this.API_SERVER, paciente);
+  public savePaciente(paciente: Paciente): Observable<Paciente> {
+    return this.httpClient.post<Paciente>(this.API_SERVER, paciente);
   }
 
   public deletePaciente(nss: number): Observable<any> {
     return this.httpClient.delete(this.API_SERVER + '/' + nss);
   }
 
-  public getPacienteByNSS(nss: number): Observable<any> {
-    return this.httpClient.get(this.API_SERVER + '/' + nss);
+  public getPacienteByNSS(nss: number): Observable<Paciente> {
+    return this.httpClient.get<Paciente>(this.API_SERVER + '/' + nss);
   }
 
-  public updatePaciente(paciente: any): Observable<any> {
-    return this.httpClient.put(this.API_SERVER + '/' + paciente.nss, paciente);
+  public updatePaciente(paciente: Paciente): Observable<Paciente> {
+    return this.httpClient.put<Paciente>(this.API_SERVER + '/' + paciente.nss, paciente);
   }
 }
+

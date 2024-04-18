@@ -5,6 +5,9 @@ import { MedicoService } from '../../../../services/medico.service';
 import { PacienteService } from '../../../../services/paciente.service';
 import { formatDate } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
+import { Cita } from '../../../../models/cita.model';
+import { Medico } from '../../../../models/medico.model';
+import { Paciente } from '../../../../models/paciente.model';
 
 
 @Component({
@@ -15,9 +18,9 @@ import { ActivatedRoute } from '@angular/router';
 export class CrearCitasComponent implements OnInit {
 
   citaForm!: FormGroup;
-  paciente: any;
-  medico: any;
-  cita: any;
+  paciente: Paciente[] = [];
+  medico: Medico[] = [];
+  cita: Cita[] = [];
   id: any = null;
   titulo: string = 'Crear Cita';
 
@@ -51,7 +54,11 @@ export class CrearCitasComponent implements OnInit {
     if (this.id != null) {
       this.titulo = 'Editar Cita';
       this.citaService.getCitaById(this.id).subscribe(resp => {
-        resp.fechaHora = formatDate(resp.fechaHora, 'yyyy-MM-ddThh:mm', 'en-US');
+        const parts = resp.fechaHora.split('/');
+        const dateParts = parts[2].split(' ');
+        const timeParts = dateParts[1].split(':');
+        const date = new Date(+dateParts[0], +parts[1] - 1, +parts[0], +timeParts[0], +timeParts[1]);    
+        resp.fechaHora = formatDate(date, 'yyyy-MM-ddTHH:mm', 'en-US');
         this.citaForm.patchValue(resp);
       }, error => console.error(error))
     }
@@ -71,6 +78,7 @@ export class CrearCitasComponent implements OnInit {
 
 
   guardar(): void {
+    console.log(this.citaForm.value);
     this.citaForm.value.fechaHora = formatDate(this.citaForm.value.fechaHora, 'dd/MM/yyyy HH:mm', 'en-US');
     
     if (this.citaForm.value.id == null) {
@@ -83,11 +91,10 @@ export class CrearCitasComponent implements OnInit {
       this.citaService.updateCita(this.citaForm.value).subscribe(resp => {
       }, error => console.error(error))
     }
-
     window.location.href = '/vercitas';
   }
 
-  editar(cita: any) {
+  editar(cita: Cita) {
     this.citaForm.setValue(cita);
   }
 

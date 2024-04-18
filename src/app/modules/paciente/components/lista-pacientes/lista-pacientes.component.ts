@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PacienteService } from '../../../../services/paciente.service';
+import { Paciente } from '../../../../models/paciente.model';
 
 @Component({
   selector: 'app-lista-pacientes',
@@ -8,7 +9,7 @@ import { PacienteService } from '../../../../services/paciente.service';
 })
 
 export class ListaPacientesComponent implements OnInit {
-  paciente: any;
+  paciente: Paciente[] = [];
 
   constructor(
     public pacienteService: PacienteService
@@ -20,10 +21,10 @@ export class ListaPacientesComponent implements OnInit {
     }, error => console.error(error))
   }
 
-  eliminar(paciente: any) {
+  eliminar(paciente: Paciente) {
     this.pacienteService.deletePaciente(paciente.nss).subscribe(resp => {
       if (resp === true) {
-        this.paciente = this.paciente.filter((item: any) => item.nss !== paciente.nss)
+        this.paciente = this.paciente.filter((item: Paciente) => item.nss !== paciente.nss)
       }
     })
   }

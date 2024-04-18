@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { CitaService } from '../../../../services/cita.service';
 import { MedicoService } from '../../../../services/medico.service';
-import { PacienteService } from '../../../../services/paciente.service';
+import { Medico } from '../../../../models/medico.model';
 
 @Component({
   selector: 'app-lista-medicos',
@@ -10,7 +9,7 @@ import { PacienteService } from '../../../../services/paciente.service';
   styleUrl: '../../../../app.component.css'
 })
 export class ListaMedicosComponent  implements OnInit {
-  medico: any;
+  medico: Medico[] = [];
 
   constructor(
     public fb: FormBuilder,
@@ -24,10 +23,10 @@ export class ListaMedicosComponent  implements OnInit {
     }, error => console.error(error))
   }
 
-  eliminar(medico: any) {
+  eliminar(medico: Medico) {
     this.medicoService.deleteMedico(medico.numColegiado).subscribe(resp => {
       if (resp === true) {
-        this.medico = this.medico.filter((item: any) => item.numColegiado !== medico.numColegiado)
+        this.medico = this.medico.filter((item: Medico) => item.numColegiado !== medico.numColegiado)
       }
     })
   }
